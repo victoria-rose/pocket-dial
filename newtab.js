@@ -740,6 +740,21 @@ importFile.addEventListener("change", async () => {
   );
 });
 
+/* ── Keyboard offset ─────────────────────────────────────────────────── */
+// In browsers where the keyboard only shrinks the visual viewport (Chrome
+// default), fixed bottom sheets get covered. Lift them by the hidden amount.
+const vv = window.visualViewport;
+function updateKeyboardOffset() {
+  if (!vv) return;
+  const hidden = Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+  document.documentElement.style.setProperty("--kb-offset", `${hidden}px`);
+}
+if (vv) {
+  vv.addEventListener("resize", updateKeyboardOffset);
+  vv.addEventListener("scroll", updateKeyboardOffset);
+  updateKeyboardOffset();
+}
+
 /* ── Init ────────────────────────────────────────────────────────────── */
 (async () => {
   state.items = await load();

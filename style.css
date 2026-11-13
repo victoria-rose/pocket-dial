@@ -344,6 +344,9 @@ body {
   display: flex;
   align-items: flex-end;
   z-index: 10;
+  /* lifted above the on-screen keyboard in browsers that don't resize
+     the layout viewport for it (see visualViewport handler in JS) */
+  padding-bottom: var(--kb-offset, 0px);
 }
 
 /* Confirmation dialogs must stack above the settings sheet */
