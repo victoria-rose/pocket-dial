@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+  <title>New Tab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="wallpaper" class="hidden"></div>
+
+  <button id="settingsBtn" aria-label="Settings">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+      <path d="M19.14 12.94a7.07 7.07 0 0 0 .06-.94 7.07 7.07 0 0 0-.06-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.6-.22l-2.39.96a7.3 7.3 0 0 0-1.63-.94l-.36-2.54a.49.49 0 0 0-.49-.42h-3.84a.49.49 0 0 0-.49.42l-.36 2.54c-.59.24-1.13.56-1.63.94l-2.39-.96a.5.5 0 0 0-.6.22L2.61 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.07 7.07 0 0 0 0 1.88l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32c.14.24.42.34.6.22l2.39-.96c.5.38 1.04.7 1.63.94l.36 2.54c.04.24.24.42.49.42h3.84c.25 0 .45-.18.49-.42l.36-2.54a7.3 7.3 0 0 0 1.63-.94l2.39.96c.24.1.5 0 .6-.22l1.92-3.32a.5.5 0 0 0-.12-.64l-2.03-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/>
+    </svg>
+  </button>
+
+  <header id="folderBar" class="hidden">
+    <button id="backBtn" class="back-btn" aria-label="Back">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <h1 id="folderTitle"></h1>
+  </header>
+
+  <main id="grid" class="grid" aria-label="Speed dial"></main>
+
+  <p id="emptyHint" class="empty-hint hidden">
+    Tap <strong>+</strong> to add your first shortcut
+  </p>
+
+  <!-- Add / Edit sheet -->
+  <div id="sheetOverlay" class="sheet-overlay hidden">
+    <div id="sheet" class="sheet" role="dialog" aria-modal="true">
+      <h2 id="sheetTitle">Add shortcut</h2>
+
+      <div class="type-toggle" id="typeToggle">
+        <button data-type="link" class="active">Link</button>
+        <button data-type="folder">Folder</button>
+      </div>
+
+      <label>
+        Name
+        <input id="inputName" type="text" maxlength="24" placeholder="YouTube" autocomplete="off">
+      </label>
+
+      <div id="iconLabel" class="hidden">
+        <span class="field-label">Icon</span>
+        <div class="icon-row">
+          <img id="iconPreview" class="icon-preview hidden" alt="">
+          <button type="button" id="iconCustom" class="mini-btn">Custom…</button>
+          <button type="button" id="iconAuto" class="mini-btn">Auto</button>
+        </div>
+      </div>
+
+      <label id="urlLabel">
+        URL
+        <input id="inputUrl" type="url" inputmode="url" placeholder="https://youtube.com" autocomplete="off" autocapitalize="off" spellcheck="false">
+      </label>
+
+      <label id="moveLabel" class="hidden">
+        Folder
+        <select id="moveSelect"></select>
+      </label>
+
+      <div class="sheet-actions">
+        <button id="deleteBtn" class="danger hidden">Delete</button>
+        <span class="spacer"></span>
+        <button id="cancelBtn">Cancel</button>
+        <button id="saveBtn" class="primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm dialog -->
+  <div id="confirmOverlay" class="sheet-overlay hidden">
+    <div class="sheet confirm" role="alertdialog" aria-modal="true">
+      <p id="confirmText"></p>
+      <div class="sheet-actions">
+        <button id="confirmNo">Cancel</button>
+        <button id="confirmYes" class="primary danger-fill">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings sheet -->
+  <div id="settingsOverlay" class="sheet-overlay hidden">
+    <div class="sheet" role="dialog" aria-modal="true">
+      <h2>Settings</h2>
+      <p class="section-label">Wallpaper</p>
+      <div class="wp-row">
+        <img id="wpPreview" class="wp-preview hidden" alt="Wallpaper preview">
+        <span id="wpNone" class="wp-none">No wallpaper set</span>
+      </div>
+      <p class="section-label">Backup</p>
+      <div class="sheet-actions tight">
+        <button id="exportBtn">Export</button>
+        <button id="importBtn">Import</button>
+      </div>
+      <div class="sheet-actions">
+        <button id="wpRemove" class="danger hidden">Remove</button>
+        <span class="spacer"></span>
+        <button id="wpChoose">Choose image</button>
+        <button id="settingsClose" class="primary">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <input id="wpFile" type="file" accept="image/*" class="hidden">
+  <input id="iconFile" type="file" accept="image/*" class="hidden">
+  <input id="importFile" type="file" accept=".json,application/json" class="hidden">
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="newtab.js"></script>
+</body>
+</html>

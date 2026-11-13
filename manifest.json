@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Speed Dial",
+  "version": "1.0.0",
+  "description": "A mobile-optimized speed dial new tab: a grid of circular favicons with labels and folders.",
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}
