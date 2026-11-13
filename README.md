@@ -1,4 +1,4 @@
-# Speed Dial
+# Pocket Dial
 
 A Chrome (MV3) new tab extension built for **mobile** browsers that support
 extensions — a grid of circular speed-dial favicons with labels and folders,
